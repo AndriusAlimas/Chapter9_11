@@ -5,10 +5,14 @@
       xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
       http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_0.xsd" 
       version="2.0"> 
+      <!-- MANDATORY (the tag, not the value) - the developer puts it in to declare the version of the tag library -->
       <tlib-version>1.2</tlib-version>
       
-      <uri>DiceFunctions</uri><!--tells the Container the name of the TLD -->
+      <!--  MANDATORY, mainly for tool to use -->
+      <short-name>RandomTags</short-name>
+      <uri>randomThings</uri><!--The unique name we use in the taglib directive -->
       
+      <!-- EL Function -->
       <function>
       	<name>rollIt</name><!--you give function name for EL (method name change yours) -->
       	<function-class>com.example.DiceRoller</function-class>
@@ -16,5 +20,25 @@
 				int rollDice()
 		</function-signature>
       </function>
+      
+      <!-- CUSTOM TAG -->
+      <tag>
+         <description>random advice</description> <!-- optional, but a really good idea -->
+         <name>advice</name><!-- REQUIRED!! This is what you use inside the tag(example: <my:advice>) -->
+         <!-- REQUIRED!! This is how the Container knows what to call when someone uses the tag in a JSP -->
+         <tag-class>com.example.handletag.AdvisorTagHandler</tag-class>
+         <body-content>empty</body-content><!-- REQUIRED!! This says that the tag must NOT have anything in the body -->
+         
+         
+         <!-- If your tag has attributes, than one <attribute> element per tag attribute is required -->
+         <attribute>
+         <!--  This say name and required you MUST put "user" attribute in the tag -->
+          <name>user</name>
+          <required>true</required>
+          <!-- This says the "user" attribute can be a Run Time Expression VALUE(i.e.doesn't have to be a String literal) -->
+          <rtexprvalue>true</rtexprvalue>
+         </attribute>
+         
+      </tag>
       
 </taglib>
