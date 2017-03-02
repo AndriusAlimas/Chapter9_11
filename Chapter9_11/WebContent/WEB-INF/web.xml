@@ -6,10 +6,18 @@
   </welcome-file-list>
   
   <jsp-config>
+  <!-- Before JSP 2.0 you must specify where to look of tlds, you can do as well now
+  if you not agree with Container default search location -->
+   <taglib>
+   		<taglib-uri>randomThings</taglib-uri>
+   		<taglib-location>/WEB-INF/tlds/MyFirstTLD.tld</taglib-location>
+   </taglib>
+   
   	<jsp-property-group>
   		<url-pattern>*.jsp</url-pattern>
   		<el-ignored>false</el-ignored>
   		<scripting-invalid>false</scripting-invalid>
   	</jsp-property-group>
+  	
   </jsp-config>
 </web-app>
